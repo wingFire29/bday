@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday & 4 Years 💖</title>
+  <style>
+    :root{
+      --bg:#FFF8FB;
+      --rose:#F8C8D8;
+      --mauve:#E7D6F5;
+      --mint:#D8F5E7;
+      --accent:#FF6FA3;
+      --text:#3b2a2f;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial;color:var(--text);background:linear-gradient(180deg,var(--bg),#FFF0F8);}
+
+    .stage{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;
+      background-image: radial-gradient(circle at 10% 10%, rgba(255,111,156,0.06), transparent 10%), radial-gradient(circle at 90% 90%, rgba(154,123,255,0.04), transparent 12%);
+    }
+
+    .card{
+      width:100%;max-width:980px;background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,250,253,0.6));
+      border-radius:24px;padding:28px;box-shadow: 0 10px 40px rgba(100,60,90,0.12);position:relative;overflow:hidden;
+      border:1px solid rgba(255,255,255,0.5);
+    }
+
+    /* floating hearts */
+    .heart{position:absolute;width:24px;height:24px;background:var(--accent);left:50%;top:20%;transform:translate(-50%,-50%);border-radius:6px;opacity:0.95;filter:drop-shadow(0 6px 12px rgba(255,111,163,0.18));}
+    .heart:before,.heart:after{content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:var(--accent)}
+    .heart:before{left:-12px}
+    .heart:after{top:-12px}
+    .hearts{pointer-events:none}
+
+    header{display:flex;gap:20px;align-items:center}
+
+    .hero-photo{width:180px;height:180px;border-radius:18px;overflow:hidden;flex:0 0 180px;border:6px solid rgba(255,255,255,0.6);box-shadow:0 8px 30px rgba(140,50,100,0.12)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .title{flex:1}
+    h1{font-size:28px;margin:0 0 6px 0;letter-spacing:0.4px}
+    .muted{color:#7b5b66}
+
+    .timeline{display:flex;gap:10px;margin-top:10px;align-items:center}
+    .pill{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:#5a3a45}
+
+    .content{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:20px}
+
+    .left{padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,245,250,0.4));border-radius:14px}
+
+    .quote{font-size:16px;margin:8px 0;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,240,248,0.7), rgba(245,245,255,0.4));box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+
+  .grid-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .grid-photos img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;border:2px solid rgba(255,255,255,0.6);display:block}
+
+    .right{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(250,245,250,0.6), rgba(245,255,250,0.5));min-height:280px}
+
+    .btn{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:600;box-shadow:0 8px 20px rgba(255,111,163,0.18)}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(255,111,163,0.18)}
+
+    footer{margin-top:18px;text-align:center;color:#7a585f}
+
+    /* dreamy animations */
+    .floaty{animation:floaty 6s ease-in-out infinite}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    /* hidden messages */
+  .hidden-messages{margin-top:12px}
+    .message{padding:10px;border-radius:10px;background:rgba(255,255,255,0.35);margin-bottom:8px;cursor:pointer;transition:all .2s}
+    .message:hover{transform:translateX(6px);box-shadow:0 6px 20px rgba(120,80,110,0.06)}
+    .message .reveal{display:none;margin-top:8px;color:#5b3942}
+    .message.open .reveal{display:block}
+
+  /* promises styles */
+  .promises{margin-top:14px;display:grid;gap:8px}
+  .promise{background:linear-gradient(90deg, rgba(255,250,253,0.7), rgba(255,245,250,0.6));padding:12px;border-radius:12px;border:1px solid rgba(255,200,220,0.6)}
+  .promise strong{display:block;font-size:15px;color:#5b2630}
+  .hold-hand{display:block;margin-top:12px;padding:12px 14px;border-radius:12px;background:linear-gradient(90deg,#FF6FA3,#FF9AC2);color:white;text-align:center;font-weight:700;cursor:pointer;border:none}
+
+  /* autoplay banner */
+  .audio-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;background:linear-gradient(90deg,#fff,#fff);padding:12px 14px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,0.08);display:flex;gap:10px;align-items:center;border:1px solid rgba(200,150,170,0.14)}
+  .audio-banner.hidden{display:none}
+  .audio-banner button{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    /* small screens */
+    @media (max-width:880px){
+      .content{grid-template-columns:1fr;}
+      .hero-photo{width:120px;height:120px}
+      .btn{padding:12px 16px;font-size:16px;border-radius:14px}
+      .hold-hand{padding:14px 16px;font-size:16px}
+      .grid-photos{grid-template-columns:repeat(3,1fr);gap:6px}
+    }
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(15,8,12,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .25s}
+    .lightbox.open{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:96%;max-height:86%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .lightbox .close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.06);color:white;border:none;padding:10px;border-radius:10px}
+    .lightbox .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.06);color:white;border:none}
+    .lightbox .nav.left{left:12px}
+    .lightbox .nav.right{right:12px}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="card">
+      <div class="hearts" aria-hidden="true" id="hearts"></div>
+      <header>
+        <div class="hero-photo floaty" id="mainPhoto">
+          <!-- will be filled by JS -->
+          <img src="IMG-20251019-WA0014.jpg" alt="us">
+        </div>
+        <div class="title">
+          <h1>Happy Birthday, my titu! 🎂✨</h1>
+          <div class="muted">And happy 4th anniversary — 20 Oct 2025. Four years of stolen glances, silly jokes and endless cuddles. — Love, pucchu</div>
+          <div class="timeline">
+            <div class="pill">4 years • Together since 2021</div>
+            <div class="pill">Birthday: 20 Oct</div>
+            <div class="pill">Made with all my heart — pucchu</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="left">
+          <div class="quote">"my titu, you are my favorite story — the one I want to read every morning and hold at night."</div>
+
+          <div style="display:flex;gap:10px;align-items:center;margin-top:14px">
+            <button class="btn" id="playBtn">Play Surprise 🎵</button>
+            <button class="btn ghost" id="toggleConf">Toggle Confetti</button>
+          </div>
+
+          <h3 style="margin-top:18px">Little gallery</h3>
+          <div class="grid-photos" id="gridPhotos">
+            <!-- filled by JS from workspace images -->
+          </div>
+
+          <div class="hidden-messages">
+            <h4>Secret compliments (click to reveal)</h4>
+            <div class="message" tabindex="0">
+              <strong>You light up rooms, my titu.</strong>
+              <div class="reveal">Even when you're not trying, your smile makes everything softer and warmer. pucchu adores that about you.</div>
+            </div>
+            <div class="message" tabindex="0">
+              <strong>Your laugh — my favorite sound.</strong>
+              <div class="reveal">It turns hard days into silly ones. I promise to keep making you laugh for years more, my titu.</div>
+            </div>
+            <div class="message" tabindex="0">
+              <strong>Thank you for choosing me.</strong>
+              <div class="reveal">Every day I wake up grateful. You make pucchu better without even noticing.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="right">
+          <h3 style="margin-top:0">Love Notes</h3>
+          <p style="font-size:15px">To my dearest — on your special day I want you to know: you're cherished beyond words, and every little thing you do is magic to me.</p>
+
+          <div style="margin-top:12px">
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <div style="flex:1;background:linear-gradient(90deg,var(--rose),var(--mauve));padding:8px;border-radius:10px">You are gorgeous ♥</div>
+              <div style="flex:1;background:linear-gradient(90deg,var(--mint),#EAFBF0);padding:8px;border-radius:10px">Sweetest heart</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:linear-gradient(90deg,#FFF0F6,#FFF7F2);padding:8px;border-radius:10px">Best hug ever</div>
+              <div style="flex:1;background:linear-gradient(90deg,#FFF6F0,#FFF0FE);padding:8px;border-radius:10px">My favorite hello</div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <h4 style="margin:0 0 8px 0">Open me</h4>
+            <p style="font-size:14px;margin:0">Click the heart below to reveal a special animation and a hidden message.</p>
+            <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+              <button class="btn" id="heartBtn">Reveal ❤️</button>
+              <button class="btn ghost" id="galleryBtn">Shuffle Photos</button>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;border-radius:10px;padding:10px;background:rgba(255,255,255,0.5);text-align:center">
+            <small>Made with love • 20 Oct 2025</small>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+  <small>You're my forever + one, my titu — with all my heart, pucchu 💞</small>
+      </footer>
+    </div>
+  </div>
+
+  <audio id="song" src="song.mp3" preload="auto"></audio>
+
+  <script>
+    // List of images discovered in the workspace (relative filenames)
+    const images = [
+      'IMG-20251019-WA0030.jpg','IMG-20251019-WA0029.jpg','IMG-20251019-WA0028.jpg','IMG-20251019-WA0027.jpg','IMG-20251019-WA0026.jpg','IMG-20251019-WA0025.jpg','IMG-20251019-WA0024.jpg','IMG-20251019-WA0023.jpg','IMG-20251019-WA0022.jpg','IMG-20251019-WA0021.jpg','IMG-20251019-WA0020.jpg','IMG-20251019-WA0019.jpg','IMG-20251019-WA0016.jpg','IMG-20251019-WA0015.jpg','IMG-20251019-WA0014.jpg','IMG-20251019-WA0012.jpg','IMG-20251019-WA0009.jpg','IMG-20251019-WA0008.jpg','IMG20221020181729.jpg','IMG20221020181717.jpg','IMG20220829165754.jpg','IMG20230415172835.jpg','IMG20220305174501 (1).jpg','IMG20220305174345.jpg','IMG20220305145907.jpg','IMG20220307_005343_759.jpg','IMG_20221019_012616.jpg','IMG_20221019_012637 - Copy.jpg','IMG_20220421_093843_429.webp','PicsArt_03-06-02.29.34.jpg','Screenshot_2022-04-20-16-48-36-66_6012fa4d4ddec268fc5c7112cbb265e7.jpg','Screenshot_2022-04-20-16-48-39-39_6012fa4d4ddec268fc5c7112cbb265e7.jpg','Snapchat-244752943.jpg','Snapchat-513578796.jpg','Snapchat-512453107.jpg','Snapchat-581962707.jpg','Snapchat-854821840.jpg','Snapchat-1429794799.jpg','Snapchat-1300559531.jpg','WhatsApp Image 2025-10-19 at 19.05.13_69dd3579.jpg','WhatsApp Image 2025-10-19 at 19.05.14_2572b970.jpg'
+    ];
+
+    // Fill gallery with first 6 images or placeholders
+    function fillGallery(){
+      const grid = document.getElementById('gridPhotos');
+      grid.innerHTML = '';
+      const picks = shuffle(images).slice(0,6);
+      for(const p of picks){
+        const img = document.createElement('img');
+        img.src = p; img.alt = 'mem';
+        grid.appendChild(img);
+      }
+    }
+
+    function shuffle(a){
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // hearts generator
+    function spawnHeart(){
+      const wrap = document.getElementById('hearts');
+      const h = document.createElement('div');
+      h.className = 'heart';
+      const size = 12 + Math.random()*40;
+      h.style.width = size+'px'; h.style.height = size+'px';
+      h.style.left = Math.random()*100+'%';
+      h.style.top = (10 + Math.random()*80)+'%';
+      h.style.opacity = 0.9 - Math.random()*0.5;
+      wrap.appendChild(h);
+      h.animate([
+        {transform: 'translateY(0) scale(1)', opacity: h.style.opacity},
+        {transform: 'translateY(-80px) scale(1.2)', opacity: 0}
+      ],{duration:3000+Math.random()*3000,iterations:1,easing:'ease-out'}).onfinish = ()=>h.remove();
+    }
+
+    // Toggle confetti (simple colored dots)
+    let confOn = true;
+    function confettiBurst(){
+      if(!confOn) return;
+      for(let i=0;i<12;i++){ const d=document.createElement('div'); d.style.position='absolute'; d.style.left=(20+Math.random()*60)+'%'; d.style.top=(20+Math.random()*60)+'%'; d.style.width='8px'; d.style.height='8px'; d.style.borderRadius='50%'; d.style.background=['#FFD6E8','#FFB6C1','#D6B3FF','#C3FFD8'][Math.floor(Math.random()*4)]; d.style.opacity='0.95'; document.querySelector('.card').appendChild(d); setTimeout(()=>d.remove(),3000+Math.random()*2000); }
+    }
+
+    // play/pause toggle for the tune (song.mp3 should exist next to this file)
+    const playBtn = document.getElementById('playBtn');
+    const audioEl = document.getElementById('song');
+    // set visible state
+    function updatePlayUi(){ playBtn.textContent = audioEl.paused ? 'Play Surprise 🎵' : 'Pause ⏸️'; }
+    playBtn.addEventListener('click', async ()=>{
+      try{
+        if(audioEl.paused){ await audioEl.play(); }
+        else { audioEl.pause(); audioEl.currentTime = 0; }
+      }catch(e){ alert('Audio blocked: please click play or add/allow song.mp3 next to this page.'); }
+      updatePlayUi();
+    });
+    audioEl.addEventListener('ended', updatePlayUi);
+    audioEl.addEventListener('play', updatePlayUi);
+    audioEl.addEventListener('pause', updatePlayUi);
+    // try to preload song if available; src points to song.mp3 already
+
+    // toggle confetti
+    document.getElementById('toggleConf').addEventListener('click',()=>{confOn=!confOn; if(confOn) confettiBurst(); this.innerText = confOn ? 'Confetti: ON' : 'Confetti: OFF';});
+
+    // heart reveal -> show promises (only once)
+    document.getElementById('heartBtn').addEventListener('click',()=>{
+      const right = document.querySelector('.right');
+      if(right.querySelector('.promises')) return; // already revealed
+      for(let i=0;i<14;i++) setTimeout(spawnHeart, i*150);
+
+      const container = document.createElement('div');
+      container.className = 'promises';
+
+      const promises = [
+        {title: 'Hold my hand forever', body: 'pucchu promises to hold your hand through storms and sunshine, through laughter and quiet nights.'},
+        {title: 'Respect & Support', body: 'I promise to respect your choices, support your dreams, and stand by you in every step, my titu.'},
+        {title: 'Grow together', body: 'I promise to learn, to forgive, and to grow with you—always choosing us, together.'},
+        {title: 'Protect your smile', body: 'I promise to do my best to keep you smiling and to make our home a calm, happy place for both of us.'},
+        {title: 'Choose you, daily', body: 'I promise to choose you every single day—my partner, my best friend, my love.'}
+      ];
+
+      promises.forEach(p=>{
+        const el = document.createElement('div'); el.className='promise';
+        el.innerHTML = `<strong>${escapeHtml(p.title)}</strong><div style="margin-top:6px;color:#6a4049">${escapeHtml(p.body)}</div>`;
+        container.appendChild(el);
+      });
+
+      const holdBtn = document.createElement('button');
+      holdBtn.className = 'hold-hand';
+      holdBtn.textContent = 'Hold my hand 🤝';
+      holdBtn.addEventListener('click',()=>{
+        // clasp animation (two circles) and a lasting promise note
+        createClasp();
+        const note = document.createElement('div'); note.className='quote'; note.style.marginTop='10px'; note.innerHTML = '<strong>Till the very end</strong> — I will walk beside you, hand in hand, for as long as we both shall live.';
+        right.insertBefore(note, right.querySelector('.promises')?.nextSibling || null);
+        holdBtn.disabled = true; holdBtn.textContent = 'Hand held 💞';
+      });
+
+      container.appendChild(holdBtn);
+      right.insertBefore(container, right.children[1]);
+    });
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(c){
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[c] || c;
+      });
+    }
+
+    function createClasp(){
+      const wrap = document.querySelector('.card');
+      const left = document.createElement('div'); const rightc = document.createElement('div');
+      [left,rightc].forEach(el=>{el.style.position='absolute';el.style.width='28px';el.style.height='28px';el.style.borderRadius='50%';el.style.background='linear-gradient(90deg,#FF9AC2,#FF6FA3)';el.style.top='40%';el.style.boxShadow='0 8px 20px rgba(200,80,120,0.18)';wrap.appendChild(el);});
+      left.style.left='24%'; rightc.style.left='60%';
+      left.animate([{transform:'translateX(0)'},{transform:'translateX(120px)'}],{duration:700,easing:'ease-in-out'});
+      rightc.animate([{transform:'translateX(0)'},{transform:'translateX(-120px)'}],{duration:700,easing:'ease-in-out'}).onfinish = ()=>{
+        // small heart at center
+        const h = document.createElement('div'); h.className='heart'; h.style.left='50%'; h.style.top='45%'; h.style.width='42px'; h.style.height='42px'; wrap.appendChild(h);
+        setTimeout(()=>{ [left,rightc,h].forEach(x=>x.remove()); },2200);
+      };
+    }
+
+    // shuffle photos
+    document.getElementById('galleryBtn').addEventListener('click',fillGallery);
+
+    // message toggles
+    document.querySelectorAll('.message').forEach(m=>{
+      m.addEventListener('click',()=>{m.classList.toggle('open')});
+    });
+
+    // initial
+    fillGallery();
+    // attempt autoplay once on load
+    (async function tryAutoplay(){
+      try{
+        await audioEl.play();
+        updatePlayUi();
+      }catch(e){
+        // autoplay blocked: show banner to let user enable audio
+        const banner = document.getElementById('audioBanner'); banner.classList.remove('hidden');
+        document.getElementById('enableAudio').addEventListener('click', async ()=>{
+          try{ await audioEl.play(); updatePlayUi(); banner.classList.add('hidden'); }
+          catch(err){ alert('Unable to play audio.'); }
+        });
+      }
+    })();
+
+    // LIGHTBOX behaviors
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    const lbNext = document.getElementById('lbNext');
+    const lbPrev = document.getElementById('lbPrev');
+    let currentIndex = 0;
+
+    function openLightbox(idx){
+      currentIndex = idx;
+      lbImg.src = galleryOrder()[idx];
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+    }
+    function closeLightbox(){ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); }
+    function galleryOrder(){ return Array.from(document.querySelectorAll('#gridPhotos img')).map(i=>i.src); }
+    function showNext(){ const arr = galleryOrder(); currentIndex = (currentIndex+1)%arr.length; lbImg.src = arr[currentIndex]; }
+    function showPrev(){ const arr = galleryOrder(); currentIndex = (currentIndex-1+arr.length)%arr.length; lbImg.src = arr[currentIndex]; }
+
+    // attach click handlers when gallery fills
+    const observer = new MutationObserver(()=>{
+      document.querySelectorAll('#gridPhotos img').forEach((img, i)=>{
+        img.style.touchAction = 'manipulation';
+        img.onclick = ()=>openLightbox(i);
+      });
+    });
+    observer.observe(document.getElementById('gridPhotos'), {childList:true});
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbNext.addEventListener('click', showNext);
+    lbPrev.addEventListener('click', showPrev);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight') showNext(); if(e.key==='ArrowLeft') showPrev(); if(e.key==='Escape') closeLightbox(); });
+
+    // simple touch swipe
+    (function addSwipe(){
+      let startX=0, endX=0;
+      lbImg.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; });
+      lbImg.addEventListener('touchmove', e=>{ endX = e.touches[0].clientX; });
+      lbImg.addEventListener('touchend', ()=>{ if(startX && endX){ const dx = endX-startX; if(dx>40) showPrev(); else if(dx<-40) showNext(); } startX=endX=0; });
+    })();
+    // spawn background hearts periodically
+    setInterval(()=>{ if(Math.random()<0.7) spawnHeart(); },800);
+    // gentle confetti every few seconds
+    setInterval(()=>{ if(Math.random()<0.25) confettiBurst(); },2000+Math.random()*3000);
+
+    // try to set main photo to first available image
+    (function setMainPhoto(){
+      const main = document.querySelector('#mainPhoto img');
+      if(images.length) main.src = images[0];
+    })();
+  </script>
+  <!-- lightbox for mobile/desktop gallery -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="close" id="lbClose">✕</button>
+    <button class="nav left" id="lbPrev">◀</button>
+    <img id="lbImg" src="" alt="photo">
+    <button class="nav right" id="lbNext">▶</button>
+  </div>
+  <!-- autoplay fallback banner -->
+  <div id="audioBanner" class="audio-banner hidden" role="dialog" aria-live="polite">
+    <div style="font-size:14px;color:#6b3a44">Music is ready — tap to enable</div>
+    <button id="enableAudio">Enable music</button>
+  </div>
+</body>
+</html>
